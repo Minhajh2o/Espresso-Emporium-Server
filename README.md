@@ -76,10 +76,9 @@ The server will start on `http://localhost:3000`
 
 ## 🔌 API Endpoints
 
-### Base URL
-```
-http://localhost:3000
-```
+### Base URLs
+- **Local:** `http://localhost:3000`
+- **Production:** `https://espresso-emporium-server-38350e9xu-minhajs-projects-4db87af1.vercel.app`
 
 ### Endpoints Overview
 
@@ -160,6 +159,12 @@ DELETE /coffees/:id
 ## 🔍 Frontend Integration
 
 Frontend Repository: [Espresso-Emporium-Client](https://github.com/Minhajh2o/Espresso-Emporium-Client)
+
+## 🚀 Deployment
+
+The API is deployed on Vercel:
+- **Production URL:** `https://espresso-emporium-server-38350e9xu-minhajs-projects-4db87af1.vercel.app`
+- **Inspect:** [Vercel Dashboard](https://vercel.com/minhajs-projects-4db87af1/espresso-emporium-server)
 
 ## 👨‍💻 Author
 
