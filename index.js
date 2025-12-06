@@ -27,10 +27,16 @@ async function run() {
 
     // collection reference
     const coffeeCollection = client.db('espressoEmporium').collection('coffees');
+    const usersCollection = client.db('espressoEmporium').collection('users');
 
     // GET coffees
     app.get('/coffees',  async (req,  res) => {
       const result = await coffeeCollection.find().toArray();
+      res.send(result);
+    });
+    // GET users
+    app.get('/users',  async (req,  res) => {
+      const result = await usersCollection.find().toArray();
       res.send(result);
     });
 
@@ -45,9 +51,13 @@ async function run() {
     // POST coffee    
     app.post('/coffees', async (req, res) => {
       const newCoffee = req.body;
-      console.log(newCoffee);
       const result = await coffeeCollection.insertOne(newCoffee);
-      console.log(result);
+      res.send(result);
+    });
+    // POST users
+    app.post('/users', async (req, res) => {
+      const newUser = req.body;
+      const result = await usersCollection.insertOne(newUser);
       res.send(result);
     });
 
@@ -64,11 +74,31 @@ async function run() {
       res.send(result);
     } );
 
+    // PATCH users
+    app.patch('/users/', async (req, res) => {
+      const { email, lastSignInTime } = req.body;
+      const filter = { email: email };
+      const updateUser = {
+        $set: {
+          lastSignInTime: lastSignInTime
+        }
+      };
+      const result = await usersCollection.updateOne(filter, updateUser);
+      res.send(result);
+    });
+
     // DELETE coffee
     app.delete('/coffees/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await coffeeCollection.deleteOne(query);
+      res.send(result);
+    });
+    // DELETE users
+    app.delete('/users/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await usersCollection.deleteOne(query);
       res.send(result);
     });
 
